@@ -1,0 +1,32 @@
+###
+
+GET http://localhost:8081/product/999
+
+###
+
+GET http://localhost:8081/product/2
+
+###
+
+GET http://localhost:8081/product/all
+
+###
+
+POST http://localhost:8081/product/add
+Content-Type: application/json
+
+{
+  "name": "Zitrone",
+  "price": 1.0,
+  "category": {
+    "id": 1,
+    "name": "Obst"
+  },
+  "details": "gelb"
+}
+
+###
+
+DELETE http://localhost:8081/product/40
+
+###

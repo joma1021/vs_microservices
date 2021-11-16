@@ -1,36 +1,27 @@
 package com.hska.webshop.productservice.model;
 
 
-import org.springframework.beans.factory.annotation.Required;
-
 import javax.persistence.*;
 
 /**
  * This class contains details about products.
  */
 @Entity
-//@Table(name = "product")
 public class Product {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id", nullable = false)
     private int id;
 
-//    @Column(name = "name")
     private String name;
 
-//    @Column(name = "price")
     private double price;
 
 
     @ManyToOne
-//    @JoinColumn(name = "category_id")
     private Category category;
 
-//    @Column(name = "details")
     private String details;
 
     public Product() {

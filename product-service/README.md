@@ -1,0 +1,4 @@
+- Build with Gradle 
+- Preferred IDE: IntelliJ
+- Legacy Docker DB needs to be running
+- Test REST Requests in ./example
