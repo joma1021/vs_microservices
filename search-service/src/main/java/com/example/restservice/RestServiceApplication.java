@@ -26,9 +26,12 @@ public class RestServiceApplication {
     @Bean
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
         return args -> {
-            Product quote = restTemplate.getForObject(
-                    "http://localhost:8081/product-service/api/product/1", Product.class);
-            log.info(quote.toString());
+            Product[] products = restTemplate.getForObject(
+                    "http://localhost:8081/product-service/api/product/all", Product[].class);
+            for(int i = 0; i < products.length; i++) {
+                log.info(products[i].getName());
+            }
+
         };
     }
 }

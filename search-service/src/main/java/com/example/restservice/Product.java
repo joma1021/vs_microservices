@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
+
     public Product() {
 
     }
@@ -46,11 +47,11 @@ public class Product {
         this.details = details;
     }
 
-    @Override
-    public String toString() {
-        return "Value{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public StringBuilder productsToString(Product[] products) {
+        StringBuilder productString = new StringBuilder();
+        for (Product product : products) {
+            productString.append(" ").append(product.name);
+        }
+        return productString;
     }
 }
