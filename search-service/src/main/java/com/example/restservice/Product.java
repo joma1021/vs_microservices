@@ -55,12 +55,4 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public StringBuilder productsToString(Product[] products) {
-        StringBuilder productString = new StringBuilder();
-        for (Product product : products) {
-            productString.append(" ").append(product.name);
-        }
-        return productString;
-    }
 }
