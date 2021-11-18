@@ -7,9 +7,9 @@ Abgabe für das Verteilte Systeme Labor
 -   build jar file:
     ```console
     cd ./product-service 
-    gradlew build
+    ./gradlew build
     cd .././search-service 
-    gradlew build
+    ./gradlew build
     cd ../
     ```
 -   test jar file:
