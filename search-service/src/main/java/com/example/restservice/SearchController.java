@@ -20,9 +20,8 @@ public class SearchController {
 	@GetMapping("/search")
 	public Object[] products(@RequestParam(defaultValue = "") String term, @RequestParam(defaultValue = "") String priceMin, @RequestParam(defaultValue = "") String priceMax) {
 		Product[] products = getProducts();
-		logger.info(priceMin);
-		logger.info(priceMax);
-		return Arrays.stream(products).filter(product -> product.getName().toLowerCase().contains(term)).toArray();
+
+		return Arrays.stream(products).filter(product -> product.getName().toLowerCase().contains(term) && product.getPrice() <= Double.parseDouble(priceMax) && product.getPrice() >= Double.parseDouble(priceMin)).toArray();
 	}
 
 	private static Product[] getProducts()

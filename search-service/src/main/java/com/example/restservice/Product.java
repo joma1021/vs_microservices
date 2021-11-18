@@ -14,6 +14,7 @@ public class Product {
     private String name;
     private Category category;
     private String details;
+    private double price;
 
     public int getId() {
         return id;
@@ -45,6 +46,14 @@ public class Product {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public StringBuilder productsToString(Product[] products) {
