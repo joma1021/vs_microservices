@@ -20,6 +20,6 @@
     ```
 -   docker compose:
     ```console
-    product-service>docker-compose up -d
+    docker-compose up -d
     ```
 
