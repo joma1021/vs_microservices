@@ -20,9 +20,7 @@ public class SearchController {
 	@GetMapping("/search")
 	public Object[] products(@RequestParam(defaultValue = "") String term) {
 		Product[] products = getProducts();
-		Object[] result = Arrays.stream(products).filter(product -> product.getName().contains(term)).toArray();
-
-		return result;
+		return Arrays.stream(products).filter(product -> product.getName().toLowerCase().contains(term)).toArray();
 	}
 
 	private static Product[] getProducts()
