@@ -18,10 +18,17 @@ public class SearchController {
 	Logger logger = LoggerFactory.getLogger(SearchController.class);
 
 	@GetMapping("/search")
-	public Object[] products(@RequestParam(defaultValue = "") String term, @RequestParam(defaultValue = "") String priceMin, @RequestParam(defaultValue = "") String priceMax) {
+	public Object[] products(@RequestParam(defaultValue = "") String term, @RequestParam(defaultValue = "", required = false) String priceMin, @RequestParam(defaultValue = "", required = false) String priceMax) {
 		Product[] products = getProducts();
+		Stream<Product> filteredProducts = Arrays.stream(products).filter(product -> product.getName().toLowerCase().contains(term));
 
-		return Arrays.stream(products).filter(product -> product.getName().toLowerCase().contains(term) && product.getPrice() <= Double.parseDouble(priceMax) && product.getPrice() >= Double.parseDouble(priceMin)).toArray();
+		if (!priceMin.equals("")) {
+			filteredProducts = filteredProducts.filter(product -> product.getPrice() <= Double.parseDouble(priceMax));
+		} if (!priceMax.equals("")) {
+			filteredProducts = filteredProducts.filter(product -> product.getPrice() >= Double.parseDouble(priceMin));
+		}
+
+		return filteredProducts.toArray();
 	}
 
 	private static Product[] getProducts()
