@@ -12,6 +12,7 @@
 .classpath
 .factorypath
 ../search/.gradle
+.gradle
 .idea
 .metadata
 .project
@@ -27,6 +28,7 @@ bin
 build
 !/**/src/**/bin
 !/**/src/**/build
+!gradle/wrapper/gradle-wrapper.jar
 build.log
 dependency-reduced-pom.xml
 dump.rdb
@@ -40,5 +42,3 @@ target
 secrets.yml
 .gradletasknamecache
 .sts4-cache
-.gradle
-!gradle/wrapper/gradle-wrapper.jar
