@@ -1,0 +1,57 @@
+version: '3.2'
+services:
+  web-shop-db-image:
+      image: mavogel/hska-vis-web-shop-db-image
+      volumes:
+        #mysql writes its data files per default into /var/lib/mysql
+        #here we mount ./.data/db as this directory
+        - "./.data/db:/var/lib/mysql"
+        #since it is kind of cumbersome to create the databases needed for the
+        #microservices manually, it is done by mounting the startup
+        - "./.docker/mysql/init/create_databases.sql:/docker-entrypoint-initdb.d/create_databases.sql"
+      environment:
+        MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
+        MYSQL_DATABASE: webshop
+        MYSQL_USER: webshopuser
+        MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
+      ports:
+        - "3306:3306"
+      networks:
+        local_dev_net:
+          aliases:
+            - web-shop-db-image
+
+  legacywebshop:
+    image: mavogel/hska-vis-legacywebshop
+    ports:
+      - "8888:8080"
+    networks:
+      local_dev_net:
+        aliases:
+          - legacywebshop
+
+  product-service:
+    image: joma1021/product-service-docker
+    ports:
+      - "8081:8081"
+    environment:
+      - MYSQL_HOST=web-shop-db-image
+    depends_on:
+      - "web-shop-db-image"
+    networks:
+      local_dev_net:
+        aliases:
+          - product-service
+
+  search-service:
+    image: unsi1012/search-service-docker
+    ports:
+      - "8082:8082"
+    networks:
+      local_dev_net:
+        aliases:
+          - search-service
+
+networks:
+  local_dev_net:
+    driver: bridge

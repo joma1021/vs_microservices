@@ -22,17 +22,6 @@ services:
         aliases:
           - product-service
 
-  search-service:
-    image: unsi1012/search-service-docker
-    ports:
-      - "8082:8082"
-    depends_on:
-      - "product-service-docker-image"
-    networks:
-      local_dev_net:
-        aliases:
-          - search-service
-
   web-shop-db-image:
     image: mavogel/hska-vis-web-shop-db-image
     volumes:
