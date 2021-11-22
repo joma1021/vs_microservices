@@ -28,3 +28,12 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     cd ../
     docker-compose up -d
+
+<h4>Wichtig!</h4>
+
+-   Gegen DB verbinden und sql auführen:
+    ```sql
+        CREATE DATABASE IF NOT EXISTS `products`;   
+        CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+        GRANT ALL ON *.* TO 'user'@'%';
+    ```

@@ -3,12 +3,8 @@ services:
   web-shop-db-image:
       image: mavogel/hska-vis-web-shop-db-image
       volumes:
-        #mysql writes its data files per default into /var/lib/mysql
-        #here we mount ./.data/db as this directory
         - "./.data/db:/var/lib/mysql"
-        #since it is kind of cumbersome to create the databases needed for the
-        #microservices manually, it is done by mounting the startup
-        - "./.docker/mysql/init/create_databases.sql:/docker-entrypoint-initdb.d/create_databases.sql"
+        - "./.docker/mysql/init/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
       environment:
         MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
         MYSQL_DATABASE: webshop

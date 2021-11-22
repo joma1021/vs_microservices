@@ -18,10 +18,7 @@ Content-Type: application/json
 {
   "name": "Zitrone",
   "price": 1.0,
-  "category": {
-    "id": 1,
-    "name": "Obst"
-  },
+  "categoryId": 1,
   "details": "gelb"
 }
 
@@ -37,10 +34,7 @@ Content-Type: application/json
 {
   "name": "Kiwi",
   "price": 2.0,
-  "category": {
-    "id": 1,
-    "name": "Obst"
-  },
+  "categoryId": 1,
   "details": "gruen"
 }
 
