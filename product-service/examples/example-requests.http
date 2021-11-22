@@ -18,10 +18,7 @@ Content-Type: application/json
 {
   "name": "Zitrone",
   "price": 1.0,
-  "category": {
-    "id": 1,
-    "name": "Obst"
-  },
+  "categoryId": 1,
   "details": "gelb"
 }
 

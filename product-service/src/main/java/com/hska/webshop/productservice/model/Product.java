@@ -11,32 +11,30 @@ public class Product {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
     private double price;
 
-
-    @ManyToOne
-    private Category category;
+    private int categoryId;
 
     private String details;
 
     public Product() {
     }
 
-    public Product(String name, double price, Category category) {
+    public Product(String name, double price, int categoryId) {
         this.name = name;
         this.price = price;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 
-    public Product(String name, double price, Category category, String details) {
+    public Product(String name, double price, int categoryId, String details) {
         this.name = name;
         this.price = price;
-        this.category = category;
+        this.categoryId = categoryId;
         this.details = details;
     }
 
@@ -64,12 +62,12 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return this.category;
+    public int getCategoryId() {
+        return this.categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getDetails() {
