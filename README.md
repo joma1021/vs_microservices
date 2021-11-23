@@ -31,7 +31,11 @@ Abgabe für das Verteilte Systeme Labor
 
 <h4>Wichtig!</h4>
 
--   Gegen DB verbinden und sql auführen:
+-   Gegen DB verbinden und SQL-Befehl ausführen:
+    ```console
+    mysql --host=127.0.0.1 --port=3306 -u root -p
+    ```
+    Password: c8de110f37300a53a971749
     ```sql
         CREATE DATABASE IF NOT EXISTS `product`;   
         CREATE USER 'user'@'%' IDENTIFIED BY 'password';
