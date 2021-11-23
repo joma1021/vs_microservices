@@ -33,7 +33,7 @@ Abgabe für das Verteilte Systeme Labor
 
 -   Gegen DB verbinden und sql auführen:
     ```sql
-        CREATE DATABASE IF NOT EXISTS `products`;   
+        CREATE DATABASE IF NOT EXISTS `product`;   
         CREATE USER 'user'@'%' IDENTIFIED BY 'password';
         GRANT ALL ON *.* TO 'user'@'%';
     ```

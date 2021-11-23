@@ -17,14 +17,14 @@ services:
           aliases:
             - web-shop-db-image
 
-  legacywebshop:
-    image: mavogel/hska-vis-legacywebshop
-    ports:
-      - "8888:8080"
-    networks:
-      local_dev_net:
-        aliases:
-          - legacywebshop
+#  legacywebshop:
+#    image: mavogel/hska-vis-legacywebshop
+#    ports:
+#      - "8888:8080"
+#    networks:
+#      local_dev_net:
+#        aliases:
+#          - legacywebshop
 
   product-service:
     image: joma1021/product-service-docker

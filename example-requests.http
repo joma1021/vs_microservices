@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8081/product-service/api/product/43
+DELETE http://localhost:8081/product-service/api/product/3
 
 ###
 
