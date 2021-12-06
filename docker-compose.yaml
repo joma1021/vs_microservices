@@ -1,22 +1,38 @@
 version: '3.2'
 services:
+  # web-shop-db-image:
+  #     image: mavogel/hska-vis-web-shop-db-image
+  #     volumes:
+  #       - "./.data/db:/var/lib/mysql"
+  #       - "./.docker/mysql/init/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
+  #     environment:
+  #       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
+  #       MYSQL_DATABASE: webshop
+  #       MYSQL_USER: webshopuser
+  #       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
+  #     ports:
+  #       - "3306:3306"
+  #     networks:
+  #       local_dev_net:
+  #         aliases:
+  #           - web-shop-db-image
   web-shop-db-image:
-      image: mavogel/hska-vis-web-shop-db-image
-      volumes:
-        - "./.data/db:/var/lib/mysql"
-        - "./.docker/mysql/init/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
-      environment:
-        MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
-        MYSQL_DATABASE: webshop
-        MYSQL_USER: webshopuser
-        MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
-      ports:
-        - "3306:3306"
-      networks:
+    build:
+      context: ./
+      dockerfile: ./docker/dockerfile
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
+      MYSQL_DATABASE: webshop
+      MYSQL_USER: webshopuser
+      MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
+    ports:
+      - "3306:3306"
+    networks:
         local_dev_net:
-          aliases:
-            - web-shop-db-image
-
+            aliases:
+                - web-shop-db-image
 #  legacywebshop:
 #    image: mavogel/hska-vis-legacywebshop
 #    ports:
