@@ -13,12 +13,11 @@ services:
   #     ports:
   #       - "3306:3306"
   #     networks:
-  #       local_dev_net:
+  #       local-dev-net:
   #         aliases:
   #           - web-shop-db-image
   web-shop-db-image:
     build:
-      context: ./
       dockerfile: ./docker/dockerfile
     volumes:
       - "./.data/db:/var/lib/mysql"
@@ -30,7 +29,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-        local_dev_net:
+        local-dev-net:
             aliases:
                 - web-shop-db-image
 #  legacywebshop:
@@ -38,12 +37,13 @@ services:
 #    ports:
 #      - "8888:8080"
 #    networks:
-#      local_dev_net:
+#      local-dev-net:
 #        aliases:
 #          - legacywebshop
 
   product-service:
-    image: joma1021/product-service-docker
+    build:
+      dockerfile: ./DockerfileProduct
     ports:
       - "8081:8081"
     environment:
@@ -51,19 +51,20 @@ services:
     depends_on:
       - "web-shop-db-image"
     networks:
-      local_dev_net:
+      local-dev-net:
         aliases:
           - product-service
 
   search-service:
-    image: unsi1012/search-service-docker
+    build:
+      dockerfile: ./DockerfileSearch
     ports:
       - "8082:8082"
     networks:
-      local_dev_net:
+      local-dev-net:
         aliases:
           - search-service
 
 networks:
-  local_dev_net:
+  local-dev-net:
     driver: bridge
