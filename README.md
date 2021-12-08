@@ -1,8 +1,7 @@
 # vs_microservices
 Abgabe für das Verteilte Systeme Labor
 
-
-<h4>Docker:</h4>
+<h2>Docker:</h2>
 
 -   build jar file:
     ```console
@@ -29,15 +28,65 @@ Abgabe für das Verteilte Systeme Labor
     cd ../
     docker-compose up -d
 
-<h4>Wichtig!</h4>
+
+<h2> Gegen DB Verbinden</h2>
 
 -   Gegen DB verbinden und SQL-Befehl ausführen:
     ```console
     mysql --host=127.0.0.1 --port=3306 -u root -p
     ```
     Password: c8de110f37300a53a971749
+
+-   SQl-Bsp zum DB anlegen:   
     ```sql
         CREATE DATABASE IF NOT EXISTS `product`;   
         CREATE USER 'user'@'%' IDENTIFIED BY 'password';
         GRANT ALL ON *.* TO 'user'@'%';
+    ```
+
+
+<h2>Kubernetes</h2>
+
+-   install: https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
+-   exec: 
+    ```console
+    kompose convert
+    ```
+-   add "imagePullPolicy: Never" to all -service.yaml files. Example:
+    ```yaml
+    containers:
+        - env:
+            - name: MYSQL_HOST
+              value: web-shop-db-image
+          image: product-service
+          imagePullPolicy: Never
+          name: product-service
+    ```
+-   start minikube
+    ```console
+    minikube start
+    ```
+-   map minikube to docker-env
+    ```console
+    minikube docker-env
+    ```
+    ```console
+    & minikube -p minikube docker-env | Invoke-Expression
+    ```
+    oder
+
+    ```console
+    eval $(minikube -p minikube docker-env)
+    ```
+-   docker compose:
+    ```console
+    docker-compose up -d
+    ```
+-   kubectl apply:
+    ```console
+    kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,local-dev-net-networkpolicy.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml
+    ```    
+-   delete minikube:
+    ```console
+    minikube delete --all
     ```
