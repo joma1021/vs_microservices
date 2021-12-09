@@ -8,11 +8,11 @@ GET http://localhost:8081/product-service/api/product/2
 
 ###
 
-GET http://localhost:8081/product-service/api/product/all
+GET http://product-service:8081/product-service/api/product/all
 
 ###
 
-POST http://localhost:8081/product-service/api/product/add
+POST http://product-service:8081/product-service/api/product/add
 Content-Type: application/json
 
 {
