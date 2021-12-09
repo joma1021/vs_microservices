@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: web-shop-db-image-claim0
+    run: web-shop-db-image-claim0
   name: web-shop-db-image-claim0
 spec:
   accessModes:

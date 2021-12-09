@@ -1,19 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
-    kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: search-service
+    run: search-service
   name: search-service
 spec:
   ports:
-    - name: "8082"
+    - name: "search-service-port"
       port: 8082
       targetPort: 8082
   selector:
-    io.kompose.service: search-service
+    run: search-service
 status:
   loadBalancer: {}

@@ -47,6 +47,8 @@ Abgabe für das Verteilte Systeme Labor
 
 <h2>Kubernetes</h2>
 
+<h3>Create YAML-Files</h3>
+
 -   install: https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
 -   exec: 
     ```console
@@ -62,6 +64,9 @@ Abgabe für das Verteilte Systeme Labor
           imagePullPolicy: Never
           name: product-service
     ```
+
+<h3>Deployment</h3>
+    
 -   start minikube
     ```console
     minikube start
@@ -84,7 +89,7 @@ Abgabe für das Verteilte Systeme Labor
     ```
 -   kubectl apply:
     ```console
-    kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,local-dev-net-networkpolicy.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml
+    kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
     ```    
 -   delete minikube:
     ```console

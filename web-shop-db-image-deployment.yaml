@@ -1,29 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
-    kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: web-shop-db-image
+    run: web-shop-db-image
   name: web-shop-db-image
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      io.kompose.service: web-shop-db-image
+      run: web-shop-db-image
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
-        kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
-        io.kompose.network/local-dev-net: "true"
-        io.kompose.service: web-shop-db-image
+        run: web-shop-db-image
     spec:
       containers:
         - env:

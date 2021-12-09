@@ -30,10 +30,10 @@ services:
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
       - "3306:3306"
-    networks:
-        local-dev-net:
-            aliases:
-                - web-shop-db-image
+    # networks:
+    #     local-dev-net:
+    #         aliases:
+    #             - web-shop-db-image
 #  legacywebshop:
 #    image: mavogel/hska-vis-legacywebshop
 #    ports:
@@ -45,8 +45,8 @@ services:
 
   product-service:
     build:
-      context: ./
-      dockerfile: ./DockerfileProduct
+      context: ./product-service
+      dockerfile: ./Dockerfile
     image: product-service
     ports:
       - "8081:8081"
@@ -54,23 +54,35 @@ services:
       - MYSQL_HOST=web-shop-db-image
     depends_on:
       - "web-shop-db-image"
-    networks:
-      local-dev-net:
-        aliases:
-          - product-service
+    # networks:
+    #   local-dev-net:
+    #     aliases:
+    #       - product-service
 
   search-service:
     build:
-      context: ./
-      dockerfile: ./DockerfileSearch
+      context: ./search-service
+      dockerfile: ./Dockerfile
     image: search-service
     ports:
       - "8082:8082"
-    networks:
-      local-dev-net:
-        aliases:
-          - search-service
+    # networks:
+    #   local-dev-net:
+    #     aliases:
+    #       - search-service
 
-networks:
-  local-dev-net:
-    driver: bridge
+  apache:
+    build:
+      context: ./apache
+      dockerfile: ./Dockerfile
+    image: apache
+    ports:
+      - "80:80"
+    # networks:
+    #   local-dev-net:
+    #     aliases:
+    #       - apache
+
+# networks:
+#   local-dev-net:
+#     driver: bridge
