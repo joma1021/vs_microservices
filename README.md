@@ -91,6 +91,14 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
     ```    
+-   open apachi page:
+    ```console
+    minikube service apache
+    ```
+ -  remove kubernetes deployments:
+    ```console
+    ./kubernetes-remove.sh
+    ```   
 -   delete minikube:
     ```console
     minikube delete --all

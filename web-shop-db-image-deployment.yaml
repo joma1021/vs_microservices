@@ -6,7 +6,7 @@ metadata:
     run: web-shop-db-image
   name: web-shop-db-image
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       run: web-shop-db-image
@@ -37,7 +37,6 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: web-shop-db-image-claim0
-      restartPolicy: Always
       volumes:
         - name: web-shop-db-image-claim0
           persistentVolumeClaim:

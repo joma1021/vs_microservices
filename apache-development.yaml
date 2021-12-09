@@ -6,7 +6,7 @@ metadata:
     run: apache
   name: apache
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       run: apache
@@ -18,10 +18,10 @@ spec:
         run: apache
     spec:
       containers:
-      - image: apache
-        imagePullPolicy: Never
-        name: apache
-        ports:
-        - containerPort: 80
-        resources: {}
+        - image: apache
+          imagePullPolicy: Never
+          name: apache
+          ports:
+            - containerPort: 80
+          resources: {}
 status: {}

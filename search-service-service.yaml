@@ -7,10 +7,11 @@ metadata:
   name: search-service
 spec:
   ports:
-    - name: "search-service-port"
-      port: 8082
+    - port: 8082
+      protocol: TCP
       targetPort: 8082
   selector:
     run: search-service
+  type: LoadBalancer
 status:
   loadBalancer: {}
