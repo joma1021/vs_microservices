@@ -6,7 +6,7 @@ metadata:
     run: product-service
   name: product-service
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       run: product-service
@@ -27,5 +27,4 @@ spec:
           ports:
             - containerPort: 8081
           resources: {}
-      restartPolicy: Always
 status: {}
