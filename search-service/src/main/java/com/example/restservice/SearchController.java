@@ -36,7 +36,7 @@ public class SearchController {
 
 	private static Product[] getProducts()
 	{
-		final String uri = "http://product-service:8081/product-service/api/product/all";
+		final String uri = "http://product-service:8081/api/product/all";
 
 		RestTemplate restTemplate = new RestTemplate();
 
