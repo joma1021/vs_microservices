@@ -67,11 +67,11 @@ Abgabe für das Verteilte Systeme Labor
 
 <h3>Deployment</h3>
     
--   start minikube
+-   start minikube:
     ```console
     minikube start
     ```
--   map minikube to docker-env
+-   map minikube to docker-env:
     ```console
     minikube docker-env
     ```
@@ -91,7 +91,7 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
     ```    
--   open apachi page:
+-   open apache page:
     ```console
     minikube service apache
     ```
