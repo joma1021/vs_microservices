@@ -21,7 +21,7 @@ spec:
       containers:
         - env:
             - name: MYSQL_DATABASE
-              value: webshop
+              value: product
             - name: MYSQL_PASSWORD
               value: 240b2c6d58ff2ce2f508b49f
             - name: MYSQL_ROOT_PASSWORD
