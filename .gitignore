@@ -2,3 +2,5 @@
 .gradle
 .docker
 .data
+.search-service/.gradle
+.product-service/.gradle
