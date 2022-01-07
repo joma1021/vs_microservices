@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: product-service
+  name: product-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: product-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: product-service
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_HOST
+              value: web-shop-db-image
+          image: product-service
+          imagePullPolicy: Never
+          name: product-service
+          ports:
+            - containerPort: 8081
+          resources: {}
+status: {}
