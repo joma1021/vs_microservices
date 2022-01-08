@@ -23,5 +23,6 @@ spec:
           name: search-service
           ports:
             - containerPort: 8082
+              name: http-search
           resources: {}
 status: {}

@@ -10,6 +10,7 @@ spec:
     - port: 8082
       protocol: TCP
       targetPort: 8082
+      name: http-search-service
   selector:
     run: search-service
   type: LoadBalancer

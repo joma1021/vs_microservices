@@ -67,11 +67,11 @@ Abgabe für das Verteilte Systeme Labor
 
 <h3>Deployment</h3>
     
--   start minikube:
+- start minikube:
     ```console
     minikube start
     ```
--   map minikube to docker-env:
+- map minikube to docker-env:
     ```console
     minikube docker-env
     ```
@@ -83,23 +83,40 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     eval $(minikube -p minikube docker-env)
     ```
--   docker compose:
+- docker compose:
     ```console
     docker-compose up -d
     ```
--   kubectl apply:
+- kubectl apply:
     ```console
     kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
     ```    
--   open apache page:
+- open apache page:
     ```console
     minikube service apache
     ```
- -  remove kubernetes deployments:
-    ```console
-    ./kubernetes-remove.sh
-    ```   
--   delete minikube:
+- remove kubernetes deployments:
+   ```console
+   ./kubernetes-remove.sh
+   ```   
+- delete minikube:
     ```console
     minikube delete --all
+    ```
+
+# istio: 
+- just do this video https://www.youtube.com/watch?v=voAyroDb6xk writing down everything too complex 
+
+- open kiali
+  ```console
+  kubectl port-forward svc/kiali -n istio-system 20001
+  ```
+- open prometheus
+    ```console
+    kubectl -n istio-system port-forward deployment/prometheus 9090:9090
+    ```
+  
+- open grafana
+    ```console
+  kubectl -n istio-system port-forwd deployment/grafana 3000:3000
     ```
