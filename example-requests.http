@@ -28,7 +28,7 @@ DELETE http://localhost:8081/api/product/3
 
 ###
 
-POST http://127.0.0.1:63209/product-service/api/product/add
+POST http://127.0.0.1:53213/product-service/api/product/add
 Content-Type: application/json
 
 {

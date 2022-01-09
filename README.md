@@ -83,9 +83,9 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     eval $(minikube -p minikube docker-env)
     ```
--   docker compose:
+-   docker build:
     ```console
-    docker-compose up -d
+    docker-compose build
     ```
 -   kubectl apply:
     ```console
@@ -102,4 +102,15 @@ Abgabe für das Verteilte Systeme Labor
 -   delete minikube:
     ```console
     minikube delete --all
+    ```
+
+-   open minikube dashboard:
+     ```console
+    minikube dashboard
+    ```
+
+-   open tunnel + show external ip
+     ```console
+    minikube tunnel -c
+    kubectl get svc
     ```

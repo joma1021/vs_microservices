@@ -6,7 +6,7 @@ metadata:
     run: product-service
   name: product-service
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       run: product-service
