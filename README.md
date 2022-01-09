@@ -105,18 +105,24 @@ Abgabe für das Verteilte Systeme Labor
     ```
 
 # istio: 
-- just do this video https://www.youtube.com/watch?v=voAyroDb6xk writing down everything too complex 
+- set istioctl
+  ```console
+  cd istio-1.12.1/
+  export PATH=$PWD/bin:$PATH
+  ```
 
 - open kiali
   ```console
-  kubectl port-forward svc/kiali -n istio-system 20001
+  cd ../
+  kubectl rollout status deployment/kiali -n istio-system
+  istioctl dashboard kiali
   ```
 - open prometheus
     ```console
-    kubectl -n istio-system port-forward deployment/prometheus 9090:9090
+    istioctl dashboard prometheus
     ```
   
 - open grafana
     ```console
-  kubectl -n istio-system port-forwd deployment/grafana 3000:3000
+    istioctl dashboard grafana
     ```

@@ -10,7 +10,6 @@ spec:
     - port: 3306
       protocol: TCP
       targetPort: 3306
-      name: http-web-shop-db-image
   selector:
     run: web-shop-db-image
   type: LoadBalancer  
