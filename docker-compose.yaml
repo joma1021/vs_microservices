@@ -59,6 +59,22 @@ services:
     #     aliases:
     #       - product-service
 
+  category-service:
+    build:
+      context: ./category-service
+      dockerfile: ./Dockerfile
+    image: category-service
+    ports:
+      - "8085:8085"
+    environment:
+      - MYSQL_HOST=web-shop-db-image
+    depends_on:
+      - "web-shop-db-image"
+    # networks:
+    #   local-dev-net:
+    #     aliases:
+    #       - product-service
+
   search-service:
     build:
       context: ./search-service
