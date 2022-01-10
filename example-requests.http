@@ -40,7 +40,7 @@ POST http://localhost:8085/api/category/add
 Content-Type: application/json
 
 {
-  "name": "Beilagen"
+  "name": "Obst"
 }
 
 ###
@@ -68,11 +68,18 @@ Content-Type: application/json
 
 ###
 
+
+DELETE http://localhost:8085/api/category/1
+Content-Type: application/json
+
+
+###
+
 DELETE http://localhost:8081/api/product/4
 
 ###
 
-DELETE http://localhost:8081/api/product/category/78
+DELETE http://localhost:8081/api/product/category/1
 
 
 ###
