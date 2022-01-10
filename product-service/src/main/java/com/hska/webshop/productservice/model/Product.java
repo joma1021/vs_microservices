@@ -64,7 +64,7 @@ public class Product {
 
     public int getCategoryId() {
         return this.categoryId;
-    }    
+    }
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;

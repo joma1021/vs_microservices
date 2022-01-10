@@ -1,17 +1,12 @@
 package com.hska.webshop.productservice.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.HashSet;
 import java.util.Set;
 
 public class Category {
 
     private int id;
-	private String name;
+    private String name;
 
 
     public Category() {
@@ -39,7 +34,7 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }    
+    }
 
 }
 
