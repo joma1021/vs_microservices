@@ -40,6 +40,14 @@ public class ProductController {
         return getFullProduct(product);
     }
 
+    @GetMapping(path = "/all", produces = "application/json")
+    public @ResponseBody
+    Iterable<FullProduct> getAllProducts() {
+        Iterable<Product> products = productRepository.findAll();
+
+        return getFullProducts(products);
+    }
+
     @GetMapping(path = "/byCategory/{categoryId}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<Collection<Product>> getProductByCategoryId(@PathVariable int categoryId) {
@@ -52,11 +60,24 @@ public class ProductController {
 
     @GetMapping("/search")
     public @ResponseBody
-    ResponseEntity<Collection<Product>> filterProductsByPriceAndTerm(@RequestParam(required = false) String term, @RequestParam(required = false) String priceMin, @RequestParam(required = false) String priceMax) {
+    ResponseEntity<Collection<FullProduct>> filterProductsByPriceAndTerm(@RequestParam(required = false) String term, @RequestParam(required = false) String priceMin, @RequestParam(required = false) String priceMax) {
         Iterable<Product> products = productRepository.findAll();
-        Stream<Product> stream = StreamSupport.stream(products.spliterator(), false);
-        Predicate<Product> priceTermPredicate = prod -> prod.getPrice() >= Double.parseDouble(priceMin) && prod.getPrice() <= Double.parseDouble(priceMax) && prod.getName().toLowerCase().contains(term);
-        Collection<Product> response = stream.filter(priceTermPredicate).collect(Collectors.toList());
+        Iterable<FullProduct> fullProducts = getFullProducts(products);
+        Stream<FullProduct> stream = StreamSupport.stream(fullProducts.spliterator(), false);
+        Predicate<FullProduct> priceMinPredicate = prod -> prod.getPrice() >= Double.parseDouble(priceMin);
+        Predicate<FullProduct> priceMaxPredicate = prod -> prod.getPrice() <= Double.parseDouble(priceMax);
+        Predicate<FullProduct> termPredicate = prod -> prod.getName().toLowerCase().contains(term);
+        Collection<FullProduct> response = stream.collect(Collectors.toList());
+        if (priceMin != null && !priceMin.isEmpty()) {
+            response = response.stream().filter(priceMinPredicate).collect(Collectors.toList());
+        }
+        if (priceMax != null && !priceMax.isEmpty()) {
+            response = response.stream().filter(priceMaxPredicate).collect(Collectors.toList());
+        }
+        if (term != null && !term.isEmpty()) {
+            response = response.stream().filter(termPredicate).collect(Collectors.toList());
+        }
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -97,15 +118,6 @@ public class ProductController {
         return new ResponseEntity<>(response);
     }
 
-    @GetMapping(path = "/all", produces = "application/json")
-    public @ResponseBody
-    Iterable<FullProduct> getAllProducts() {
-        Iterable<Product> products = productRepository.findAll();
-
-        return getFullProducts(products);
-    }
-
-
     private FullProduct getFullProduct(Product product) {
 
         FullProduct fullProduct;
@@ -121,14 +133,15 @@ public class ProductController {
 
     }
 
-    private List<FullProduct> getFullProducts(Iterable<Product> products) {
-        List<FullProduct> fullProducts = new ArrayList<>();
+    private Collection<FullProduct> getFullProducts(Iterable<Product> products) {
+        Collection<FullProduct> fullProducts = new ArrayList<>();
         List<Category> categories = getCategories();
 
         products.forEach(product -> {
             Predicate<Category> categoryIdPredicate = cat -> cat.getId() == product.getCategoryId();
             try {
                 fullProducts.add(new FullProduct(product.getId(), product.getName(), product.getPrice(), categories.stream().filter(categoryIdPredicate).findFirst().get(), product.getDetails()));
+                LOGGER.info("Product-ID: " + product.getId());
             } catch (Exception e) {
 
                 LOGGER.severe("Failed to get Product with ID: '" + product.getId() + "' ErrorMessage: " + e.getMessage());
