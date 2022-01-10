@@ -29,7 +29,7 @@ Content-Type: application/json
 
 {
   "name": "Spinat",
-  "price": 1.0,
+  "price": 5.0,
   "categoryId": 3,
   "details": "gruen"
 }
@@ -89,6 +89,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8082/search?term=zitrone
+GET http://localhost:8081/api/product/search?priceMin=2&priceMax=9
+
+###
+
+
+GET http://localhost:8082/search?term=spinat&priceMin=2
 
 ###
