@@ -4,7 +4,7 @@ GET http://localhost:8081/api/product/999
 
 ###
 
-GET http://localhost:8081/api/product/2
+GET http://localhost:8081/api/product/12
 
 ###
 
@@ -21,6 +21,41 @@ Content-Type: application/json
   "categoryId": 1,
   "details": "gelb"
 }
+
+###
+
+POST http://localhost:8081/api/product/add
+Content-Type: application/json
+
+{
+  "name": "Spinat",
+  "price": 1.0,
+  "categoryId": 2,
+  "details": "gruen"
+}
+
+###
+
+POST http://localhost:8085/api/category/add
+Content-Type: application/json
+
+{
+  "name": "Obst"
+}
+
+###
+
+
+GET http://localhost:8085/api/category/all
+Content-Type: application/json
+
+
+###
+
+
+GET http://localhost:8085/api/category/1
+Content-Type: application/json
+
 
 ###
 

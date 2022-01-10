@@ -1,40 +1,23 @@
 package com.hska.webshop.productservice.model;
 
-import javax.persistence.*;
 
-/**
- * This class contains details about products.
- */
-@Entity
-@Table(name = "product")
-public class Product {
+public class FullProduct {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
     private double price;
 
-    private int categoryId;
+    private Category category;
 
     private String details;
 
-    public Product() {
-    }
-
-    public Product(String name, double price, int categoryId) {
+    public FullProduct(int id, String name, double price, Category category, String details) {
+        this.id = id;
         this.name = name;
         this.price = price;
-        this.categoryId = categoryId;
-    }
-
-    public Product(String name, double price, int categoryId, String details) {
-        this.name = name;
-        this.price = price;
-        this.categoryId = categoryId;
+        this.category = category;
         this.details = details;
     }
 
@@ -62,12 +45,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getCategoryId() {
-        return this.categoryId;
+    public Category getCategory() {
+        return this.category;
     }    
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getDetails() {
