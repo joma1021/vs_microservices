@@ -67,19 +67,20 @@ public class ProductController {
 
     @DeleteMapping(path = "category/{categoryId}")
     public @ResponseBody
-    ResponseEntity<Integer> deleteProductsByCategoryId(@PathVariable int categoryId) {
+    ResponseEntity<HttpStatus> deleteProductsByCategoryId(@PathVariable int categoryId) {
         Iterable<Product> products = productRepository.findAll();
         Stream<Product> stream = StreamSupport.stream(products.spliterator(), false);
         Predicate<Product> categoryPredicate = prod -> prod.getCategoryId() == categoryId;
         Collection<Product> productList = stream.filter(categoryPredicate).collect(Collectors.toList());
 
         try {
+            getCategoryById(categoryId);
             productRepository.deleteAll(productList);
         } catch (Exception e) {
-            return new ResponseEntity<>(categoryId, HttpStatus.NOT_FOUND);
+            throw new CategoryNotFoundException(categoryId);
         }
 
-        return new ResponseEntity<>(categoryId, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
