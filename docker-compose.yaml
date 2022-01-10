@@ -75,18 +75,6 @@ services:
     #     aliases:
     #       - product-service
 
-  search-service:
-    build:
-      context: ./search-service
-      dockerfile: ./Dockerfile
-    image: search-service
-    ports:
-      - "8082:8082"
-    # networks:
-    #   local-dev-net:
-    #     aliases:
-    #       - search-service
-
   apache:
     build:
       context: ./apache

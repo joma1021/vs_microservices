@@ -7,21 +7,21 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     cd ./product-service 
     ./gradlew build
-    cd .././search-service 
+    cd .././category-service 
     ./gradlew build
     cd ../
     ```
 -   test jar file:
     ```console
     java -jar ./product-service/build/libs/product-service.jar
-    java -jar ./search-service/build/libs/search-service.jar
+    java -jar ./category-service/build/libs/category-service.jar
     ```
 -   build image:
     ```console
     cd ./product-service
     docker build -t joma1021/product-service-docker .
-    cd .././search-service
-    docker build -t unsi1012/search-service-docker .
+    cd .././category-service
+    docker build -t unsi1012/category-service-docker .
     ```
 -   docker compose:
     ```console
@@ -89,7 +89,7 @@ Abgabe für das Verteilte Systeme Labor
     ```
 -   kubectl apply:
     ```console
-    kubectl apply -f product-service-service.yaml,search-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,search-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
+    kubectl apply -f product-service-service.yaml,category-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,category-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
     ```    
 -   open apache page:
     ```console

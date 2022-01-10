@@ -30,7 +30,7 @@ Content-Type: application/json
 {
   "name": "Spinat",
   "price": 5.0,
-  "categoryId": 3,
+  "categoryId": 2,
   "details": "gruen"
 }
 
@@ -69,8 +69,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:8085/api/category/1
-Content-Type: application/json
+DELETE http://localhost:8085/api/category/2
 
 
 ###
