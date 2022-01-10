@@ -70,6 +70,10 @@ Content-Type: application/json
 
 DELETE http://localhost:8081/api/product/4
 
+###
+
+DELETE http://localhost:8081/api/product/category/78
+
 
 ###
 
