@@ -90,6 +90,8 @@ Abgabe für das Verteilte Systeme Labor
 -   kubectl apply:
     ```console
     kubectl apply -f product-service-service.yaml,category-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,category-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
+    OR 
+    sh ./kubernetes-apply.sh
     ```    
 -   open apache page:
     ```console
@@ -113,4 +115,26 @@ Abgabe für das Verteilte Systeme Labor
      ```console
     minikube tunnel -c
     kubectl get svc
+    ```
+# istio:
+- set istioctl
+  ```console
+  cd istio-1.12.1/
+  export PATH=$PWD/bin:$PATH
+  ```
+
+- open kiali
+  ```console
+  cd ../
+  kubectl rollout status deployment/kiali -n istio-system
+  istioctl dashboard kiali
+  ```
+- open prometheus
+    ```console
+    istioctl dashboard prometheus
+    ```
+
+- open grafana
+    ```console
+    istioctl dashboard grafana
     ```
