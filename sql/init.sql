@@ -1,5 +1,5 @@
-Drop DATABASE `product`;
-Drop DATABASE `category`;
+-- Drop DATABASE `product`;
+-- Drop DATABASE `category`;
 
 CREATE DATABASE IF NOT EXISTS `product`;
 CREATE DATABASE IF NOT EXISTS `category`;
