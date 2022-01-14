@@ -21,6 +21,14 @@ spec:
         - env:
             - name: MYSQL_HOST
               value: web-shop-db-image
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           image: product-service
           imagePullPolicy: Never
           name: product-service

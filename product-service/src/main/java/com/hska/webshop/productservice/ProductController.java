@@ -7,6 +7,7 @@ import com.hska.webshop.productservice.model.FullProduct;
 import com.hska.webshop.productservice.model.Product;
 import com.hska.webshop.productservice.model.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,18 @@ public class ProductController {
         Iterable<Product> products = productRepository.findAll();
 
         return getFullProducts(products);
+    }
+
+    @GetMapping(path = "/allWithPodName", produces = "application/json")
+    public @ResponseBody
+    ResponseEntity<Collection<FullProduct>> getAllProductsWithPodName() {
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.add("Pod-Name", System.getenv("MY_POD_NAME"));
+        Iterable<Product> products = productRepository.findAll();
+
+        return ResponseEntity.ok()
+        .headers(responseHeader)
+        .body(getFullProducts(products));
     }
 
     @GetMapping(path = "/byCategory/{categoryId}", produces = "application/json")
