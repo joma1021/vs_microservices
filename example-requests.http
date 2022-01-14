@@ -12,6 +12,10 @@ GET http://localhost:8081/api/product/all
 
 ###
 
+GET http://localhost:8081/api/product/allWithPodName
+
+###
+
 POST http://localhost:8081/api/product/add
 Content-Type: application/json
 
