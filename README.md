@@ -138,3 +138,12 @@ Abgabe für das Verteilte Systeme Labor
     ```console
     istioctl dashboard grafana
     ```
+
+# Logging/Monitoring:
+- Product-Service Example Average Response Time
+
+sum(rate(istio_request_duration_milliseconds_sum{pod_template_hash=~"5559b5f6df|6b67458f69|69f8fd644f",source_workload="product-service",source_workload_namespace="default"}[1m])) / sum(rate(istio_request_duration_milliseconds_count{pod_template_hash=~"5559b5f6df|6b67458f69|69f8fd644f",source_workload="product-service",source_workload_namespace="default"}[1m]))
+
+- Average Response Time of all Services:
+
+sum(rate(istio_request_duration_milliseconds_sum{source_workload=~"apache|product-service|category-service",source_workload_namespace="default"}[1m])) / sum(rate(istio_request_duration_milliseconds_count{source_workload=~"apache|product-service|category-service",source_workload_namespace="default"}[1m]))
