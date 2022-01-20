@@ -76,7 +76,6 @@ public class ProductManagerImpl implements ProductManager {
 
 
 	public int addProduct(String name, double price, int categoryId, String details) {
-		int productId = -1;
 
 		String uri = "http://" + this.ipAddress +  ":8081/api/product/add";
 		String productJSON = "";
@@ -84,15 +83,15 @@ public class ProductManagerImpl implements ProductManager {
 		CategoryManager categoryManager = new CategoryManagerImpl();
 		Category category = categoryManager.getCategory(categoryId);
 
-		Product product = null;
+
 
 		if(category != null){
 			if(details == null){
-				product = new Product(name, price, category);
+				Product product = new Product(name, price, category);
 				productJSON = "{\"name\": \"" + product.getName() + "\", \"price\": " + product.getPrice() + ", \"categoryId\": " + product.getCategory().getId() + "\" }";
 
 			} else{
-				product = new Product(name, price, category, details);
+				Product product = new Product(name, price, category, details);
 				productJSON = "{\"name\": \"" + product.getName() + "\", \"price\": " + product.getPrice() + ", \"categoryId\": " + product.getCategory().getId() + ", \"details\": \"" + product.getDetails() + "\" }";
 			}
 		}
@@ -102,14 +101,11 @@ public class ProductManagerImpl implements ProductManager {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
-
-		body.add("1", productJSON);
-
 		HttpEntity<String> requestEntity = new HttpEntity<String>(productJSON, headers);
 		ResponseEntity<Product> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, Product.class);
+		Product product = responseEntity.getBody();
 
-		return productId;
+		return product.getId();
 	}
 
 
