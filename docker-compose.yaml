@@ -1,26 +1,11 @@
 version: '3.2'
 services:
-  # web-shop-db-image:
-  #     image: mavogel/hska-vis-web-shop-db-image
-  #     volumes:
-  #       - "./.data/db:/var/lib/mysql"
-  #       - "./.docker/mysql/init/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
-  #     environment:
-  #       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
-  #       MYSQL_DATABASE: webshop
-  #       MYSQL_USER: webshopuser
-  #       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
-  #     ports:
-  #       - "3306:3306"
-  #     networks:
-  #       local-dev-net:
-  #         aliases:
-  #           - web-shop-db-image
-  web-shop-db-image:
+
+  ms-db-image:
     build:
       context: ./
       dockerfile: ./docker/dockerfile
-    image: web-shop-db-image
+    image: ms-db-image
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
@@ -33,15 +18,36 @@ services:
     # networks:
     #     local-dev-net:
     #         aliases:
-    #             - web-shop-db-image
-#  legacywebshop:
-#    image: mavogel/hska-vis-legacywebshop
-#    ports:
-#      - "8888:8080"
-#    networks:
-#      local-dev-net:
-#        aliases:
-#          - legacywebshop
+    #             - ms-db-image
+
+  legacywebshop:
+    build:
+      context: ./hska-vis-legacy
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8888:8080"
+    # networks:
+    #   local_dev_net:
+    #       aliases:
+    #           - legacywebshop
+
+  web-shop-db-image:
+    build:
+      context: ./hska-vis-legacy
+      dockerfile: ./docker/DockerfileMySQL
+    volumes:
+      - "./hska-vis-legacy/.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
+      MYSQL_DATABASE: webshop
+      MYSQL_USER: webshopuser
+      MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
+    ports:
+      - "3302:3302"
+    # networks:
+    #   local_dev_net:
+    #       aliases:
+    #           - web-shop-db-image
 
   product-service:
     build:
@@ -55,9 +61,9 @@ services:
     depends_on:
       - "web-shop-db-image"
     # networks:
-    #   local-dev-net:
+    #   local_dev_net:
     #     aliases:
-    #       - product-service
+    #     - product-service
 
   category-service:
     build:
@@ -71,22 +77,23 @@ services:
     depends_on:
       - "web-shop-db-image"
     # networks:
-    #   local-dev-net:
+    #   local_dev_net:
     #     aliases:
-    #       - product-service
+    #       - category-service
 
-  apache:
-    build:
-      context: ./apache
-      dockerfile: ./Dockerfile
-    image: apache
-    ports:
-      - "80:80"
-    # networks:
-    #   local-dev-net:
+  # apache:
+  #   build:
+  #     context: ./apache
+  #     dockerfile: ./Dockerfile
+  #   image: apache
+  #   ports:
+  #     - "80:80"
+  #   # networks:
+    #   local_dev_net:
     #     aliases:
     #       - apache
 
 # networks:
-#   local-dev-net:
+#   local_dev_net:
 #     driver: bridge
+
