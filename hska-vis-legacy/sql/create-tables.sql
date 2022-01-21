@@ -1,9 +1,3 @@
-CREATE TABLE category (
-	id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(255) NOT NULL,
-	PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
 CREATE TABLE role (
 	id INT NOT NULL AUTO_INCREMENT,
 	level1 INT,
@@ -11,6 +5,15 @@ CREATE TABLE role (
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE customer (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+	lastname VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	username VARCHAR(255) NOT NULL,
+	role INT NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB;
 
 CREATE UNIQUE INDEX UK_mufchskagt7e1w4ksmt9lum5l ON customer (username ASC);
 
