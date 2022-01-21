@@ -1,25 +1,6 @@
 version: '3.2'
 services:
 
-  ms-db-image:
-    build:
-      context: ./
-      dockerfile: ./docker/dockerfile
-    image: ms-db-image
-    volumes:
-      - "./.data/db:/var/lib/mysql"
-    environment:
-      MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
-      MYSQL_DATABASE: product
-      MYSQL_USER: webshopuser
-      MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
-    ports:
-      - "3306:3306"
-    # networks:
-    #   local_dev_net:
-    #     aliases:
-    #       - ms-db-image
-
   legacywebshop:
     build:
       context: ./hska-vis-legacy
@@ -45,7 +26,7 @@ services:
       MYSQL_USER: webshopuser
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
-      - "3302:3302"
+      - "3306:3306"
     # networks:
     #   local_dev_net:
     #     aliases:
@@ -59,7 +40,7 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - "ms-db-image"
+      - "web-shop-db-image"
     # networks:
     #   local_dev_net:
     #     aliases:
@@ -73,7 +54,7 @@ services:
     ports:
       - "8085:8085"
     depends_on:
-      - "ms-db-image"
+      - "web-shop-db-image"
     # networks:
     #   local_dev_net:
     #     aliases:

@@ -19,8 +19,6 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="hska.iwi.eShopMaster.model.database.dataobjects.Category"/>
-        <mapping class="hska.iwi.eShopMaster.model.database.dataobjects.Product"/>
         <mapping class="hska.iwi.eShopMaster.model.database.dataobjects.User"/>
         <mapping class="hska.iwi.eShopMaster.model.database.dataobjects.Role"/>
 

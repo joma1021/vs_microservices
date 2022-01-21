@@ -47,24 +47,6 @@ Abgabe für das Verteilte Systeme Labor
 
 <h2>Kubernetes</h2>
 
-<h3>Create YAML-Files</h3>
-
--   install: https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
--   exec: 
-    ```console
-    kompose convert
-    ```
--   add "imagePullPolicy: Never" to all -service.yaml files. Example:
-    ```yaml
-    containers:
-        - env:
-            - name: MYSQL_HOST
-              value: web-shop-db-image
-          image: product-service
-          imagePullPolicy: Never
-          name: product-service
-    ```
-
 <h3>Deployment</h3>
     
 -   start minikube:

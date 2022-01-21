@@ -6,7 +6,7 @@ metadata:
     run: category-service
   name: category-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       run: category-service

@@ -7,32 +7,13 @@ metadata:
   name: web-shop-db-image
 spec:
   ports:
-    - port: 3302
+    - port: 3306
       protocol: TCP
-      targetPort: 3302
+      targetPort: 3306
   selector:
     run: web-shop-db-image
   type: LoadBalancer  
 status:
   loadBalancer: {}
 
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    run: ms-db-image
-  name: ms-db-image
-spec:
-  ports:
-    - port: 3306
-      protocol: TCP
-      targetPort: 3306
-  selector:
-    run: ms-db-image
-  type: LoadBalancer  
-status:
-  loadBalancer: {}
 
