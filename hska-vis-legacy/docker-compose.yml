@@ -3,7 +3,7 @@ services:
   legacywebshop:
     image: mavogel/hska-vis-legacywebshop
     ports:
-      - "8888:8080"
+      - "8080:8080"
     networks:
       local_dev_net:
           aliases:

@@ -16,25 +16,27 @@ services:
     ports:
       - "3306:3306"
     # networks:
-    #     local-dev-net:
-    #         aliases:
-    #             - ms-db-image
+    #   local_dev_net:
+    #     aliases:
+    #       - ms-db-image
 
   legacywebshop:
     build:
       context: ./hska-vis-legacy
       dockerfile: ./docker/Dockerfile
     ports:
-      - "8888:8080"
+      - "8080:8080"
+    hostname: legacywebshop.legacywebshop
     # networks:
     #   local_dev_net:
-    #       aliases:
-    #           - legacywebshop
+    #     aliases:
+    #       - legacywebshop
 
   web-shop-db-image:
     build:
       context: ./hska-vis-legacy
       dockerfile: ./docker/DockerfileMySQL
+    image: web-shop-db-image
     volumes:
       - "./hska-vis-legacy/.data/db:/var/lib/mysql"
     environment:
@@ -46,8 +48,8 @@ services:
       - "3302:3302"
     # networks:
     #   local_dev_net:
-    #       aliases:
-    #           - web-shop-db-image
+    #     aliases:
+    #       - web-shop-db-image
 
   product-service:
     build:
@@ -63,7 +65,7 @@ services:
     # networks:
     #   local_dev_net:
     #     aliases:
-    #     - product-service
+    #       - product-service
 
   category-service:
     build:
@@ -81,14 +83,14 @@ services:
     #     aliases:
     #       - category-service
 
-  # apache:
-  #   build:
-  #     context: ./apache
-  #     dockerfile: ./Dockerfile
-  #   image: apache
-  #   ports:
-  #     - "80:80"
-  #   # networks:
+  apache:
+    build:
+      context: ./apache
+      dockerfile: ./Dockerfile
+    image: apache
+    ports:
+      - "80:80"
+    # networks:
     #   local_dev_net:
     #     aliases:
     #       - apache
@@ -96,4 +98,3 @@ services:
 # networks:
 #   local_dev_net:
 #     driver: bridge
-

@@ -89,7 +89,7 @@ Abgabe für das Verteilte Systeme Labor
     ```
 -   kubectl apply:
     ```console
-    kubectl apply -f product-service-service.yaml,category-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,category-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml
+    kubectl apply -f product-service-service.yaml,category-service-service.yaml,web-shop-db-image-service.yaml,product-service-deployment.yaml,category-service-deployment.yaml,web-shop-db-image-deployment.yaml,web-shop-db-image-claim0-persistentvolumeclaim.yaml,apache-development.yaml,apache-service.yaml,hska-vis-legacy-service.yaml,hska-vis-legacy-deployment.yaml
     OR 
     sh ./kubernetes-apply.sh
     ```    

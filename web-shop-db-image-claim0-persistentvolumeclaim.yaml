@@ -12,3 +12,20 @@ spec:
     requests:
       storage: 100Mi
 status: {}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ms-db-image-claim0
+  name: ms-db-image-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}

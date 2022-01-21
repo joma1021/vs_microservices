@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: legacywebshop
+  name: legacywebshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: legacywebshop
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: legacywebshop
+    spec:
+      containers:
+        - image: legacywebshop
+          imagePullPolicy: Never
+          name: legacywebshop
+          ports:
+            - containerPort: 8080
+          resources: {}
+status: {}

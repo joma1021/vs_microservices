@@ -35,9 +35,9 @@ $ docker-compose down
 ### <a name="built-it-on-your-own"></a>Built it on your own
 - Run `docker-compose -f docker-compose-local.yml up -d` which will
     - It builds the web app `war` in a staged build, packs it into a docker tomcat8 container,
-    and sets the user `tomcat` with password `admin` for the Management Console at http://localhost:8888/
+    and sets the user `tomcat` with password `admin` for the Management Console at http://localhost:8080/
     - Initializes the MySQL Database docker container with the db user defined in `hibernate.cfg.xml`
-    - Sets up both containers and make the legacy webshop available under http://localhost:8888/EShop-1.0.0
+    - Sets up both containers and make the legacy webshop available under http://localhost:8080/EShop-1.0.0
 - Follow the logs via `docker-compose -f docker-compose-local.yml logs -tf`
 - To shutdown the containers run `docker-compose -f docker-compose-local.yml down`
 

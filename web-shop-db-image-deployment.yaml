@@ -3,6 +3,53 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
+    run: ms-db-image
+  name: ms-db-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ms-db-image
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: ms-db-image
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: product
+            - name: MYSQL_PASSWORD
+              value: 240b2c6d58ff2ce2f508b49f
+            - name: MYSQL_ROOT_PASSWORD
+              value: c8de110f37300a53a971749
+            - name: MYSQL_USER
+              value: webshopuser
+          image: ms-db-image
+          imagePullPolicy: Never
+          name: ms-db-image
+          ports:
+            - containerPort: 3306
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: ms-db-image-claim0
+      volumes:
+        - name: ms-db-image-claim0
+          persistentVolumeClaim:
+            claimName: ms-db-image-claim0
+status: {}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
     run: web-shop-db-image
   name: web-shop-db-image
 spec:
@@ -21,7 +68,7 @@ spec:
       containers:
         - env:
             - name: MYSQL_DATABASE
-              value: product
+              value: webshop
             - name: MYSQL_PASSWORD
               value: 240b2c6d58ff2ce2f508b49f
             - name: MYSQL_ROOT_PASSWORD
@@ -32,7 +79,7 @@ spec:
           imagePullPolicy: Never
           name: web-shop-db-image
           ports:
-            - containerPort: 3306
+            - containerPort: 3302
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/mysql
