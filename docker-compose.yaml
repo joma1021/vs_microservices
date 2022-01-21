@@ -24,9 +24,9 @@ services:
     build:
       context: ./hska-vis-legacy
       dockerfile: ./docker/Dockerfile
+    image: legacywebshop
     ports:
       - "8080:8080"
-    hostname: legacywebshop.legacywebshop
     # networks:
     #   local_dev_net:
     #     aliases:
@@ -58,10 +58,8 @@ services:
     image: product-service
     ports:
       - "8081:8081"
-    environment:
-      - MYSQL_HOST=web-shop-db-image
     depends_on:
-      - "web-shop-db-image"
+      - "ms-db-image"
     # networks:
     #   local_dev_net:
     #     aliases:
@@ -74,10 +72,8 @@ services:
     image: category-service
     ports:
       - "8085:8085"
-    environment:
-      - MYSQL_HOST=web-shop-db-image
     depends_on:
-      - "web-shop-db-image"
+      - "ms-db-image"
     # networks:
     #   local_dev_net:
     #     aliases:
